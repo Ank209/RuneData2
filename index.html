@@ -41,12 +41,12 @@
         </select>
       </div>
       <div id="hcimInfo" style="display: none;">
-        <img src="assets/images/hcim.png" class="infoHCImage" />
-        <div class="infoText" style="color:red">Hardcore Ironman</div>
+        <div class="icon-base hc-icon"></div>
+        <div class="hcInfoText" style="color:red">Hardcore Ironman</div>
       </div>
       <div id="ironInfo" style="display: none;">
-        <img src="assets/images/iron.png" class="infoIronImage" />
-        <div class="infoText">Ironman</div>
+        <div class="icon-base iron-icon"></div>
+        <div class="ironInfoText">Ironman</div>
       </div>
       <div id="regInfo" style="display: none;">
         <div class="infoRegText" style="color:white">Regular</div>
@@ -65,6 +65,8 @@
         <h1 id="rank"></h1>
         <p>Ouest Points</p>
         <h1 id="qp"></h1>
+        <p>RuneScore</p>
+        <h1 id="runescore"></h1>
         <table class="leftTable">
           <tr>
             <td>99s</td>
@@ -120,115 +122,115 @@
     <div id="mainData">
       <div id="skill0" class="skill-bar" style="width:0%">
         <div class="bar-text-icon" onclick="sort('default')">
-          <img style="transform: translate(5px, 4px);" id="default-cross" src="assets/images/cross.svg" height="20" width="20">
+          <div class="icon-base cross-icon"></div>
         </div>
         <div class="bar-text-skill" onclick="sort('skill')">Skill
-          <img id="skill-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+          <div id="skill-arrow" class="icon-base sort-icon sort-icon-inactive"></div>
         </div>
         <div class="bar-text-rank" onclick="sort('rank')">Rank
-          <img id="rank-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+          <div id="rank-arrow" class="icon-base sort-icon sort-icon-inactive"></div>
         </div>
         <div class="bar-text-level" onclick="sort('lvl')">Lvl
-          <img id="lvl-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+          <div id="lvl-arrow" class="icon-base sort-icon sort-icon-inactive"></div>
         </div>
         <div class="bar-text-vlevel" onclick="sort('vlvl')">VLvl
-          <img id="vlvl-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+          <div id="vlvl-arrow" class="icon-base sort-icon sort-icon-inactive"></div>
         </div>
         <div class="bar-text-xp" onclick="sort('xp')">Experience
-          <img id="xp-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+          <div id="xp-arrow" class="icon-base sort-icon sort-icon-inactive"></div>
         </div>
         <div class="bar-text-tnl" onclick="sort('tnl')">Next Level
-          <img id="tnl-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+          <div id="tnl-arrow" class="icon-base sort-icon sort-icon-inactive"></div>
         </div>
         <div class="bar-text-remaining" onclick="sort('rem')">To Go
-          <img id="rem-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+          <div id="rem-arrow" class="icon-base sort-icon sort-icon-inactive"></div>
         </div>
         <div class="bar-text-percentage" onclick="sort('percent')">%
-          <img id="percent-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+          <div id="percent-arrow" class="icon-base sort-icon sort-icon-inactive"></div>
         </div>
       </div>
     </div>
     <div id="highscoreArrowContainer">
       <div class="highscoreArrow" onclick="OpenHighscores(1)" id="arrow1">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(2)" id="arrow2">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(3)" id="arrow3">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(4)" id="arrow4">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(5)" id="arrow5">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(6)" id="arrow6">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(7)" id="arrow7">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(8)" id="arrow8">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(9)" id="arrow9">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(10)" id="arrow10">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(11)" id="arrow11">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(12)" id="arrow12">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(13)" id="arrow13">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(14)" id="arrow14">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(15)" id="arrow15">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(16)" id="arrow16">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(17)" id="arrow17">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(18)" id="arrow18">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(19)" id="arrow19">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(20)" id="arrow20">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(21)" id="arrow21">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(22)" id="arrow22">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(23)" id="arrow23">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(24)" id="arrow24">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(25)" id="arrow25">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(26)" id="arrow26">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
       <div class="highscoreArrow" onclick="OpenHighscores(27)" id="arrow27">
-        <img src="assets/images/goarrow.svg" height="20">
+        <div class="icon-base hiscore-arrow"></div>
       </div>
     </div>
   </div>
@@ -238,8 +240,7 @@
     <a href="https://loading.io/spinner/double-ring">loading.io</a>
     Block Arrow icon by
     <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
-    Cross Icon by
-    <a href="http://www.freepik.com" title="Freepik">Freepik</a>
+    <div>Cross Icon by <a href="https://www.flaticon.com/authors/eleonor-wang" title="Eleonor Wang">Eleonor Wang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     Line Arrow by <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a>-->
   <script type="text/javascript" src="assets/js/runedata.js"></script>
 </footer>

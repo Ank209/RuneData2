@@ -8,6 +8,7 @@ let playerSkillsIron = [];
 let playerSkillsReg = [];
 let playerClues = [];
 let playerData = [];
+let playerRuneScore = 0;
 // Variables to manage the program
 let eliteXp = [];
 let trainingMethods = [];
@@ -39,7 +40,18 @@ function genHTML() {
   let mainContainer = document.getElementById("mainData");
   // One Row for each skill
   for (let i = 1; i <= 27; i++) {
-    mainContainer.innerHTML = mainContainer.innerHTML + '<div class="skill-container" onclick="ShowSkillData(' + i + ')"><div id="skill' + i + '" class="skill-bar"> <div class="bar-text-icon"><img class="skill-image" src="assets/images/skills/' + skills[i - 1].toLowerCase() + '.png"></div><div class="bar-text-skill">' + skills[i - 1] + '</div></div></div>'
+    mainContainer.innerHTML = mainContainer.innerHTML + 
+    '<div class="skill-container" onclick="ShowSkillData(' + i + ')">' + 
+      '<div id="skill' + i + '" class="skill-bar">' + 
+        '<div class="bar-text-icon">' + 
+          //'<img class="skill-image" src="assets/images/skills/' + skills[i - 1].toLowerCase() + '.png">' + 
+          '<div class="icon-base" style="background-position-x: ' + ((i - 1) * -30) + 'px;"></div>' +
+        '</div>' + 
+        '<div class="bar-text-skill">' + 
+          skills[i - 1] + 
+        '</div>' + 
+      '</div>' + 
+    '</div>'
   }
 
   // Keep track of this state so it can be reverted to later
@@ -83,7 +95,7 @@ function GetUserData(searchTerm) {
   $.ajax({
     url: "assets/trainingmethods.json", dataType: "json", success: function (data) { trainingMethods = data; }
   });
-  // Player Info via allorigins.me, Reload the page if important data cannot be found
+  // Player Info via allorigins.me
   GetPlayerData(searchTerm);
   $.ajax({
     type: 'GET',
@@ -98,10 +110,6 @@ function GetUserData(searchTerm) {
     url: "http://allorigins.me/get?url=http://services.runescape.com/m=hiscore/index_lite.ws?player=" + searchTerm,
     dataType: "text", success: function (data) { AllOrigins([data, 0, "Reg"], 'text', returnCall.PlayerStats) }, error: function (data) { HandleError(data, 0, "Reg") }
   });
-  $.ajax({
-    url: 'http://services.runescape.com/m=website-data/playerDetails.ws?names=["' + searchTerm + '"]',
-    dataType: "jsonp", success: HandlePlayerInfo, error: function (data) { location.reload(); }
-  });
 }
 
 function GetPlayerData(searchTerm) {
@@ -112,6 +120,10 @@ function GetPlayerData(searchTerm) {
   $.ajax({
     url: "http://allorigins.me/get?url=https://apps.runescape.com/runemetrics/quests?user=" + searchTerm,
     dataType: "json", success: function (data) { AllOrigins([data], 'json', returnCall.QuestData) }, error: function (data) { GetPlayerData(searchTerm); }
+  });
+  $.ajax({
+    url: 'http://services.runescape.com/m=website-data/playerDetails.ws?names=["' + searchTerm + '"]',
+    dataType: "jsonp", success: HandlePlayerInfo, error: function (data) { GetPlayerData(searchTerm); }
   });
 }
 
@@ -332,7 +344,7 @@ function findTitle(element, title) {
 
 // Deal with errors retrieving the data
 function HandleError(data, type, typeString) {
-  if (data.status == 404) { // if the player is not on the highscores
+  if (data == 404) { // if the player is not on the highscores
     console.log("Player not found on " + typeString + " highscores");
     // Notify the user if the player can't be found on any of the highscore
     if (type == 0) {
@@ -342,7 +354,9 @@ function HandleError(data, type, typeString) {
     }
   } else { // Reload the page if any other error occurs
     console.log("Error getting " + typeString + " status: " + data.status);
-    location.reload();
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("helpText").innerText = "An unknown error occured, please try again";
+    document.getElementById("searchHelp").style.display = "block";
   }
   dataReceived(-1);
 }
@@ -470,6 +484,7 @@ function HandlePlayerStats(data, type, typeString) {
     playerSkills.push(tempSkill);
     //console.log(skills[i]);
   }
+  playerRuneScore = skills[52].split(',')[1];
   playerClues = [];
   i = 53;
   //Loop through the 5 clue tiers and add that data to the playerClues array
@@ -685,11 +700,12 @@ function CreateSkillList(playerSkills) {
   document.getElementById("200ms").innerText = maxXpSkills;
 
   // Set the clues scroll values on the left
-  document.getElementById("clueEasy").innerText = playerClues[0].value;
-  document.getElementById("clueMed").innerText = playerClues[1].value;
-  document.getElementById("clueHard").innerText = playerClues[2].value;
-  document.getElementById("clueElite").innerText = playerClues[3].value;
-  document.getElementById("clueMaster").innerText = playerClues[4].value;
+  document.getElementById("runescore").innerText = numberWithCommas(playerRuneScore);
+  document.getElementById("clueEasy").innerText = numberWithCommas(playerClues[0].value);
+  document.getElementById("clueMed").innerText = numberWithCommas(playerClues[1].value);
+  document.getElementById("clueHard").innerText = numberWithCommas(playerClues[2].value);
+  document.getElementById("clueElite").innerText = numberWithCommas(playerClues[3].value);
+  document.getElementById("clueMaster").innerText = numberWithCommas(playerClues[4].value);
 
   UpdateGoal();
   SetMilestone(playerSkills, lowestSkill);
@@ -705,8 +721,7 @@ function sort(column, reverse = true) {
   let rotate = "";
   // Revert the previously selected column's arrow to the default
   if (currentSortCol != "default") {
-    document.getElementById(currentSortCol + "-arrow").setAttribute("src", "assets/images/arrowinactive.svg");
-    document.getElementById(currentSortCol + "-arrow").setAttribute("class", "");
+    document.getElementById(currentSortCol + "-arrow").setAttribute("class", "icon-base sort-icon sort-icon-inactive");
   }
   // Reverse the order if the column has been clicked twice
   if (currentSortCol == column && tinysort.defaults.order == 'asc' && reverse) {
@@ -720,7 +735,14 @@ function sort(column, reverse = true) {
   // Sort the selected row and alter the column's arrow accordingly
   if (column == "default") {
     tinysort(skillElements, { data: 'num' });
-  } else if (column == "skill") {
+  } else if (column == "lvl" || column == "vlvl") {
+    tinysort(skillElements, { data: column }, { data: 'xp' });
+    document.getElementById(column + "-arrow").setAttribute("class", "icon-base sort-icon sort-icon-active " + rotate);
+  } else {
+    tinysort(skillElements, { data: column });
+    document.getElementById(column + "-arrow").setAttribute("class", "icon-base sort-icon sort-icon-active " + rotate);
+  } 
+  /*if (column == "skill") {
     tinysort(skillElements, { data: 'skill' });
     document.getElementById("skill-arrow").setAttribute("src", "assets/images/arrowactive.svg");
     document.getElementById("skill-arrow").setAttribute("class", rotate);
@@ -752,7 +774,7 @@ function sort(column, reverse = true) {
     tinysort(skillElements, { data: 'percent' });
     document.getElementById("percent-arrow").setAttribute("src", "assets/images/arrowactive.svg");
     document.getElementById("percent-arrow").setAttribute("class", rotate);
-  }
+  }*/
   // Find the order that the rows now appear in
   skillOrder = [];
   for (let i = 0; i < skillElements.length; i++) {
@@ -808,9 +830,9 @@ function UpdateGoal() {
       currElement.parentElement.setAttributeNode(attrRem);
       currElement.parentElement.setAttributeNode(attrPercent);
       currElement.style = "width:" + tempPercentageValue + "%";
-      currElement.childNodes[8].innerText = numberWithCommas(tempRemValue);
-      currElement.childNodes[9].innerText = tempPercentageValue + "%";
-      currElement.childNodes[9].setAttribute("style", "color: " + getColor(tempPercentageValue) + ";");
+      currElement.childNodes[7].innerText = numberWithCommas(tempRemValue);
+      currElement.childNodes[8].innerText = tempPercentageValue + "%";
+      currElement.childNodes[8].setAttribute("style", "color: " + getColor(tempPercentageValue) + ";");
       xpRemaining = xpRemaining + tempRemValue;
     }
     // Update some of the data on the left
