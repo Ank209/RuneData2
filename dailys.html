@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ankh's Daily Checklist</title>
+    <link rel="stylesheet" type="text/css" href="assets/repstyle.css"></link>
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="assets/js/js.cookie.js"></script>
+    <script type="text/javascript" src="assets/js/tinysort.js"></script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td width="30">
+                <img src="assets/images/tick.svg" height="30" width="30" draggable=false>
+            </td>
+            <td>Click this when you've completed the daily</td>
+            <td width="30">
+                <img src="assets/images/exclamation.svg" height="30" width="30" draggable=false>
+            </td>
+            <td>Click this if this daily is important to you</td>
+            <td width="30">
+                <img src="assets/images/cross.svg" height="30" width="30" draggable=false>
+            </td>
+            <td>Click this if you're not interested in this daily</td>
+        </tr>
+    </table>
+    <button onclick="location.reload()" style="margin-top:10px;">Refresh + Sort</button>
+    <div>
+        <h1>Daily</h1>
+        <table id="daily">
+
+        </table>
+        <h1>Weekly</h1>
+        <table id="weekly">
+
+        </table>
+        <h1>Monthly</h1>
+        <table id="monthly">
+
+        </table>
+    </div>
+</body>
+
+<footer>
+    <!--Tick icon made by
+    <a href="https://www.flaticon.com/authors/eleonor-wang" title="Eleonor Wang">Eleonor Wang</a>
+    Other icons made by
+    <a href="http://www.freepik.com" title="Freepik">Freepik</a>-->
+    <script type="text/javascript" src="assets/js/dailys.js"></script>
+</footer>
+
+</html>

@@ -1,0 +1,90 @@
+[
+    { "skill":"None" , "methods":[
+    
+        ]},
+    { "skill":"Attack" , "methods":[
+        { "name":"Abyss", "xp":285 , "perhr":1800 }
+    ]},
+    { "skill":"Defence" , "methods":[
+        { "name":"Abyss", "xp":285 , "perhr":1800 }
+    ]},
+    { "skill":"Strength" , "methods":[
+        { "name":"Abyss", "xp":285 , "perhr":1800 }
+    ]},
+    { "skill":"Constistution" , "methods":[
+        { "name":"Abyss", "xp":285 , "perhr":1800 }
+    ]},
+    { "skill":"Ranged" , "methods":[
+        
+    ]},
+    { "skill":"Prayer" , "methods":[
+        { "name":"Infernal Ashes @ Ecto", "xp":250 , "perhr":600 },
+        { "name":"Tortured Ashes @ Ecto", "xp":360 , "perhr":600 },
+        { "name":"Dragon Bone @ G Altar", "xp":267 , "perhr":830 },
+        { "name":"Frost Dragon Bone @ G Altar", "xp":630 , "perhr":830 },
+        { "name":"Hefin VOS", "xp":11760 , "perhr":30 }
+    ]},
+    { "skill":"Magic" , "methods":[
+        
+    ]},
+    { "skill":"Cooking" , "methods":[
+        
+    ]},
+    { "skill":"Woodcutting" , "methods":[
+        
+    ]},
+    { "skill":"Fletching" , "methods":[
+        
+    ]},
+    { "skill":"Fishing" , "methods":[
+        
+    ]},
+    { "skill":"Firemaking" , "methods":[
+        
+    ]},
+    { "skill":"Crafting" , "methods":[
+        
+    ]},
+    { "skill":"Smithing" , "methods":[
+        
+    ]},
+    { "skill":"Mining" , "methods":[
+        
+    ]},
+    { "skill":"Herblore" , "methods":[
+        
+    ]},
+    { "skill":"Agility" , "methods":[
+        
+    ]},
+    { "skill":"Thieving" , "methods":[
+        
+    ]},
+    { "skill":"Slayer" , "methods":[
+        
+    ]},
+    { "skill":"Farming" , "methods":[
+        
+    ]},
+    { "skill":"Runecrafting" , "methods":[
+        
+    ]},
+    { "skill":"Hunter" , "methods":[
+        
+    ]},
+    { "skill":"Construction" , "methods":[
+        
+    ]},
+    { "skill":"Summoning" , "methods":[
+        
+    ]},
+    { "skill":"Dungeoneering" , "methods":[
+        
+    ]},
+    { "skill":"Divination" , "methods":[
+        
+    ]},
+    { "skill":"Invention" , "methods":[
+        
+    ]}
+]

@@ -1,0 +1,453 @@
+/*@font-face {
+    font-family: 'Tulpen One';
+    src: url(tulpen.ttf);
+}*/
+
+html {
+   margin:0;
+   padding:0;
+   height: 100%;
+}
+
+body {
+    width: 1054px;
+    margin: 5px auto 0;
+    background-color: #1C1C1C;
+    color: #888;
+    font-family: 'Telex', sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    height: 89%;
+}
+
+footer {
+    position:relative;
+    /*width:100%;
+    height:30px;*/
+}
+
+div {
+    display: block;
+}
+
+a {
+    color: #00FFFF;
+}
+
+.container {
+    min-height: 100%;
+    height: auto;
+    position: relative;
+}
+
+div.skill-bar {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+.spinner {
+    display: none;
+}
+
+.rotate180 {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+::placeholder { 
+    color: white;
+    opacity: 1; /* Firefox */
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.rsnHeader {
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 10px;
+    color: white;
+    background-color: #1C1C1C;
+    font-size: 100px;
+    font-family: 'Tulpen One';
+    border: none;
+    text-align: center;
+}
+
+.rsnHeader.compare {
+    width: 512px;
+}
+
+.extraInfo {
+    display: none;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: white;
+}
+.extraInfo table tbody tr td {
+    border: none !important;
+    vertical-align: bottom;
+}
+
+#leftData {
+    display: none;
+    float: left;
+    width: 235.5px;
+}
+
+#leftData p {
+    font-size: 75%;
+    display: inline;
+    margin: 13px 0 0 0;
+    transform: translate(0, -5px);
+    padding-bottom: 0px;
+    float: left;
+    clear: left;
+}
+
+#leftData h1 {
+    display: inline;
+    color: #00BC00;
+    padding: 0;
+    margin: 0;
+    font-size: 26px;
+    float: right;
+    clear: right;
+    font-family: 'Tulpen One', cursive;
+    letter-spacing: 1px;
+}
+
+.leftTable {
+    text-align: center;
+    border: none !important;
+}
+td {
+    border: none !important;
+}
+.leftTable tbody tr:first-of-type td {
+    width:75px;
+    padding-top:10px;
+}
+.leftTable tbody tr td h1 {
+    float: none !important;
+}
+
+.infoHCImage {
+    display:inline-block; 
+    margin:0px 0px 0px -20px;
+}
+.infoIronImage {
+    display:inline-block; 
+    margin:0px 0px 0px -20px;
+}
+
+.infoText {
+    width:50px; 
+    display: inline-block; 
+    transform: translate(0, -9px)
+}
+.infoRegText {
+    width:50px; 
+    margin:0px 0px 0px 0px;
+    display: inline-block; 
+}
+
+.darkDropdown {
+    margin: 10px 0px 10px 10%;
+    width: 80%;
+    background: #444;
+    border-color: #111 #0a0a0a black;
+    background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4));
+    background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4));
+    background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4));
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.darkDropdown.compare {
+    margin: 10px 0px 10px 452px;
+    width: 150px;
+    height: 28px;
+    text-align: center;
+}
+
+.darkDropdown .darkSelect {
+    color: #aaa;
+    text-shadow: 0 1px black;
+    background: #444;
+}
+
+.darkSelect {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 6px 8px 6px 10px;
+    height: 28px;
+    line-height: 14px;
+    font-size: 12px;
+    color: #62717a;
+    text-shadow: 0 1px white;
+    background: #f2f2f2;
+    background: rgba(0, 0, 0, 0) !important;
+    border: 0;
+    border-radius: 0;
+    -webkit-appearance: none;
+    text-align-last:center;
+}
+
+.darkSelect > option {
+    background: rgb(66, 66, 66) !important;
+}
+
+.playerData {
+    padding: 0 10px 0 0;
+    overflow: hidden;
+}
+
+#mainData {
+    display: none;
+    float: left;
+    width: 788.5px;
+    min-height: 575px;
+    padding-bottom: 30px;
+}
+
+#mainDataLeft {
+    display: none;
+    float: left;
+    width: 512px;
+    min-height: 575px;
+    padding-bottom: 30px;
+}
+
+.skill-icons {
+    width: 30px;
+    float: left;
+    display: none;
+}
+
+#mainDataRight {
+    display: none;
+    float: left;
+    width: 512px;
+    min-height: 575px;
+    padding-bottom: 30px;
+}
+
+#highscoreArrowContainer {
+    display: none;
+    float: left;
+    width: 30px;
+    min-height: 575px;
+}
+
+.skillData {
+    /*height: 90px;*/
+    color: black;
+    background-color: white;
+}
+
+.highscoreArrow {
+    transform: translate(2px, 11px);
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: thin solid black;
+}
+
+.highscoreArrow:first-of-type {
+    margin-top: 25px;
+}
+
+.skill-container {
+    border-top: thin solid #484848;
+}
+
+/* Default blue gradient on skill bars */
+.skill-bar {
+    height: 30px;
+    width: 0%;
+    margin-top: 0px;
+    background-color: #044A70;
+    background-image: linear-gradient(bottom, #044A70 11%, #003A61 50%);
+    background-image: -o-linear-gradient(bottom, #044A70 11%, #003A61 50%);
+    background-image: -moz-linear-gradient(bottom, #044A70 11%, #003A61 50%);
+    background-image: -webkit-linear-gradient(bottom, #044A70 11%, #003A61 50%);
+    background-image: -ms-linear-gradient(bottom, #044A70 11%, #003A61 50%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.11, #044A70), color-stop(0.5, #003A61));
+}
+/* Green gradient for current skill percentage*/
+.skill-container:hover .skill-bar {
+    background-image: linear-gradient(bottom, #076932 11%, #005734 50%);
+    background-image: -o-linear-gradient(bottom, #076932 11%, #005734 50%);
+    background-image: -moz-linear-gradient(bottom, #076932 11%, #005734 50%);
+    background-image: -webkit-linear-gradient(bottom, #076932 11%, #005734 50%);
+    background-image: -ms-linear-gradient(bottom, #076932 11%, #005734 50%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.11, #076932), color-stop(0.5, #005734));
+}
+/* Red gradient for missing xp percentage */
+.skill-container:hover {
+    background-color: #5C1A19;
+    background-image: linear-gradient(bottom, #630303 11%, #470202 50%);
+    background-image: -o-linear-gradient(bottom, #630303 11%, #470202 50%);
+    background-image: -moz-linear-gradient(bottom, #630303 11%, #470202 50%);
+    background-image: -webkit-linear-gradient(bottom, #630303 11%, #470202 50%);
+    background-image: -ms-linear-gradient(bottom, #630303 11%, #470202 50%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.11, #630303), color-stop(0.5, #470202));
+}
+
+.skill-bar-hover {
+    background-image: linear-gradient(bottom, #076932 11%, #005734 50%);
+    background-image: -o-linear-gradient(bottom, #076932 11%, #005734 50%);
+    background-image: -moz-linear-gradient(bottom, #076932 11%, #005734 50%);
+    background-image: -webkit-linear-gradient(bottom, #076932 11%, #005734 50%);
+    background-image: -ms-linear-gradient(bottom, #076932 11%, #005734 50%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.11, #076932), color-stop(0.5, #005734));
+}
+/* Red gradient for missing xp percentage */
+.skill-container-hover {
+    background-color: #5C1A19;
+    background-image: linear-gradient(bottom, #630303 11%, #470202 50%);
+    background-image: -o-linear-gradient(bottom, #630303 11%, #470202 50%);
+    background-image: -moz-linear-gradient(bottom, #630303 11%, #470202 50%);
+    background-image: -webkit-linear-gradient(bottom, #630303 11%, #470202 50%);
+    background-image: -ms-linear-gradient(bottom, #630303 11%, #470202 50%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.11, #630303), color-stop(0.5, #470202));
+}
+
+.skill-container:last-of-type {
+    border-bottom: thin solid #484848;
+}
+
+.chatHead {
+    transform: translate(0px, -140px);
+    margin-bottom:-100px;
+}
+
+.skill-image {
+    height: 30px;
+}
+
+.bar-text-icon {
+    position: absolute;
+    height: 30px;
+}
+
+.bar-text-icon.compare {
+    position: relative;
+    height: 30px;
+    margin-top: 1px;
+}
+.bar-text-icon.compare:nth-child(2) {
+    margin-top: 32px;
+}
+
+.bar-text-skill {
+    position: absolute;
+    margin-left: 32px;
+    line-height: 30px;
+}
+
+.bar-text-rank {
+    position: absolute;
+    margin-left: 162px;
+    line-height: 30px;
+}
+.bar-text-rank.compare {
+    margin-left: 2%;
+}
+.bar-text-rank.compareL {
+    margin-left: 40%;
+}
+
+.bar-text-level {
+    position: absolute;
+    margin-left: 252px;
+    line-height: 30px;
+}
+.bar-text-level.compare {
+    margin-left: 12%;
+}
+.bar-text-level.compareL {
+    margin-left: 33%;
+}
+
+.bar-text-vlevel {
+    position: absolute;
+    margin-left: 315px;
+    line-height: 30px;
+}
+.bar-text-vlevel.compare {
+    margin-left: 19%;
+}
+.bar-text-vlevel.compareL {
+    margin-left: 26%;
+}
+
+.bar-text-xp {
+    position: absolute;
+    margin-left: 386px;
+    line-height: 30px;
+    padding-left: 2px;
+}
+.bar-text-xp.compare {
+    margin-left: 28%;
+}
+.bar-text-xp.compareL {
+    margin-left: 12%;
+}
+
+.bar-text-tnl {
+    position: absolute;
+    margin-left: 528px;
+    line-height: 30px;
+    padding-left: 2px;
+}
+
+.bar-text-remaining {
+    position: absolute;
+    margin-left: 631px;
+    line-height: 30px;
+    padding-left: 2px;
+}
+
+.bar-text-percentage {
+    position: absolute;
+    margin-left: 725px;
+    line-height: 30px;
+    padding-left: 2px;
+}
+.bar-text-percentage.compare {
+    margin-left: 42%;
+}
+.bar-text-percentage.compareL {
+    margin-left: 2%;
+}
+
+.compareL {
+    margin-top:-30px;
+}
+.compareL.title {
+    margin-top:0px;
+}
+.compare {
+    margin-top:-30px;
+}
+.compare.title {
+    margin-top:0px;
+}

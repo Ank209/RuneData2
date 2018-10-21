@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ankh's RuneData</title>
+    <style type="text/css">
+        @font-face {
+            font-display: block;
+            font-family: "Tulpen One";
+            src: url(assets/tulpen.ttf) format("truetype");
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="assets/runestyle.css"></link>
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="assets/js/tinysort.js"></script>
+</head>
+
+<body style="padding-left: calc(100vw - 100%);">
+    <div class="container">
+        <form id="headerCompare" onsubmit="LoadUserPage()">
+            <input type="text" id="rsn1" class="rsnHeader compare title" placeholder="Search"></input>
+            <input type="text" id="rsn2" class="rsnHeader compare title" placeholder="Search"></input>
+            <input type="submit" style="display:none;"></input>
+        </form>
+        <div id="searchHelp" style="font-size:20px;">
+            <span id="helpText">Enter a player's name in each Search field above and press 'Enter' to compare them</span>
+        </div>
+        
+        <script type="text/javascript" src="assets/js/getplayername.js"></script>
+        <div id="loading" class="spinner">
+            <img src="assets/images/spinner.svg"></img>
+            <h2>Loading, please wait</h2>
+        </div>
+        <div class="extraInfo">
+            <table style="border: none;">
+                <tr>
+                    <td id="goalXp1" style="width:285px;"></td>
+                    <td id="goalPercent1" style="font-size:40px; width:139px;"></td>
+                    <td style="width:200px;" rowspan="2">
+                        <div class="darkDropdown">
+                            <select class="darkSelect" id="highscore" onchange="updateHighscore()">
+                                <option value="Reg">Regular</option>
+                                <option value="Iron" disabled>Ironman</option>
+                                <option value="HC" selected="selected" disabled>Hardcore Ironman</option>
+                            </select>
+                        </div>
+                        <div class="darkDropdown">
+                            <select class="darkSelect" id="target" onchange="UpdateAllGoals()">
+                                <option value="Max">Maxed</option>
+                                <option value="MaxT">Max Total</option>
+                                <option value="120">120 All</option>
+                                <option value="200m">200m All</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td id="goalPercent2" style="font-size:40px; width:139px;"></td>
+                    <td id="goalXp2" style="width:285px;"></td>
+                </tr>
+                <tr style="font-size:15px; height:15px;">
+                    <td>xp to go</td>
+                    <td>complete</td>
+                    <td>complete</td>
+                    <td>xp to go</td>
+                </tr>
+            </table>
+        </div>
+        <div id="mainDataLeft">
+            <div id="skill0_1" class="skill-bar" style="width:0%">
+                <div class="bar-text-percentage compareL title" onclick="sort('percent', 1)">%
+                    <img id="percent-arrow1" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+                </div>
+                <div class="bar-text-xp compareL title" onclick="sort('xp', 1)">Experience
+                    <img id="xp-arrow1" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+                </div>
+                <div class="bar-text-vlevel compareL title" onclick="sort('vlvl', 1)">VLvl
+                    <img id="vlvl-arrow1" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+                </div>
+                <div class="bar-text-level compareL title" onclick="sort('lvl', 1)">Lvl
+                    <img id="lvl-arrow1" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+                </div>
+                <div class="bar-text-rank compareL title" onclick="sort('rank', 1)">Rank
+                    <img id="rank-arrow1" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+                </div>
+            </div>
+        </div>
+        <div class="skill-icons" id="skill-list">
+            <div class="bar-text-icon" onclick="sort('default')">
+                <img style="transform: translate(5px, 4px);" id="default-cross" src="assets/images/cross.svg" height="20" width="20">
+            </div>
+            <div class="bar-text-icon compare" data-skill="1">
+                <img class="skill-image" src="assets/images/skills/attack.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="2">
+                <img class="skill-image" src="assets/images/skills/defence.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="3">
+                <img class="skill-image" src="assets/images/skills/strength.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="4">
+                <img class="skill-image" src="assets/images/skills/constitution.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="5">
+                <img class="skill-image" src="assets/images/skills/ranged.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="6">
+                <img class="skill-image" src="assets/images/skills/prayer.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="7">
+                <img class="skill-image" src="assets/images/skills/magic.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="8">
+                <img class="skill-image" src="assets/images/skills/cooking.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="9">
+                <img class="skill-image" src="assets/images/skills/woodcutting.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="10">
+                <img class="skill-image" src="assets/images/skills/fletching.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="11">
+                <img class="skill-image" src="assets/images/skills/fishing.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="12">
+                <img class="skill-image" src="assets/images/skills/firemaking.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="13">
+                <img class="skill-image" src="assets/images/skills/crafting.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="14">
+                <img class="skill-image" src="assets/images/skills/smithing.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="15">
+                <img class="skill-image" src="assets/images/skills/mining.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="16">
+                <img class="skill-image" src="assets/images/skills/herblore.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="17">
+                <img class="skill-image" src="assets/images/skills/agility.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="18">
+                <img class="skill-image" src="assets/images/skills/thieving.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="19">
+                <img class="skill-image" src="assets/images/skills/slayer.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="20">
+                <img class="skill-image" src="assets/images/skills/farming.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="21">
+                <img class="skill-image" src="assets/images/skills/runecrafting.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="22">
+                <img class="skill-image" src="assets/images/skills/hunter.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="23">
+                <img class="skill-image" src="assets/images/skills/construction.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="24">
+                <img class="skill-image" src="assets/images/skills/summoning.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="25">
+                <img class="skill-image" src="assets/images/skills/dungeoneering.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="26">
+                <img class="skill-image" src="assets/images/skills/divination.png">
+            </div>
+            <div class="bar-text-icon compare" data-skill="27">
+                <img class="skill-image" src="assets/images/skills/invention.png">
+            </div>
+        </div>
+        <div id="mainDataRight">
+            <div id="skill0_2" class="skill-bar" style="width:0%">
+                <div class="bar-text-rank compare title" onclick="sort('rank', 2)">Rank
+                    <img id="rank-arrow2" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+                </div>
+                <div class="bar-text-level compare title" onclick="sort('lvl', 2)">Lvl
+                    <img id="lvl-arrow2" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+                </div>
+                <div class="bar-text-vlevel compare title" onclick="sort('vlvl', 2)">VLvl
+                    <img id="vlvl-arrow2" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+                </div>
+                <div class="bar-text-xp compare title" onclick="sort('xp', 2)">Experience
+                    <img id="xp-arrow2" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+                </div>
+                <div class="bar-text-percentage compare title" onclick="sort('percent', 2)">%
+                    <img id="percent-arrow2" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+    <!--Spinner by
+    <a href="https://loading.io/spinner/double-ring">loading.io</a>
+    Block Arrow icon by
+    <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
+    Cross Icon by
+    <a href="http://www.freepik.com" title="Freepik">Freepik</a>
+    Line Arrow by <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a>-->
+    <script type="text/javascript" src="assets/js/compare.js"></script>
+</footer>
+
+</html>

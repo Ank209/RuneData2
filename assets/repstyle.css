@@ -1,0 +1,57 @@
+html {
+    margin:0;
+    padding:0;
+    height: 100%;
+}
+ 
+body {
+    width: 1054px;
+    margin: 5px auto 0;
+    font-family: 'Telex', sans-serif;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: thin solid black;
+}
+
+tr.ignore {
+    background-color: grey;
+    color: white;
+}
+
+tr.important {
+    background-color: cyan;
+    color: black;
+}
+
+tr.complete {
+    background-color: green;
+    color: white;
+}
+
+a {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+tr.complete a {
+    color: cyan;
+}
+
+tr.complete a:visited {
+    color: yellow;
+}
+
+tr {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}

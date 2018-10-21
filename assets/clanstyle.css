@@ -1,0 +1,27 @@
+html {
+    margin:0;
+    padding:0;
+    height: 100%;
+}
+ 
+body {
+    width: 1054px;
+    margin: 5px auto 0;
+    font-family: 'Telex', sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #1C1C1C;
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.prefix {
+    text-align: right;
+}
+
+.suffix {
+    text-align: left;
+}
