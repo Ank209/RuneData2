@@ -741,40 +741,7 @@ function sort(column, reverse = true) {
   } else {
     tinysort(skillElements, { data: column });
     document.getElementById(column + "-arrow").setAttribute("class", "icon-base sort-icon sort-icon-active " + rotate);
-  } 
-  /*if (column == "skill") {
-    tinysort(skillElements, { data: 'skill' });
-    document.getElementById("skill-arrow").setAttribute("src", "assets/images/arrowactive.svg");
-    document.getElementById("skill-arrow").setAttribute("class", rotate);
-  } else if (column == "rank") {
-    tinysort(skillElements, { data: 'rank' });
-    document.getElementById("rank-arrow").setAttribute("src", "assets/images/arrowactive.svg");
-    document.getElementById("rank-arrow").setAttribute("class", rotate);
-  } else if (column == "lvl") {
-    tinysort(skillElements, { data: 'lvl' }, { data: 'xp' });
-    document.getElementById("lvl-arrow").setAttribute("src", "assets/images/arrowactive.svg");
-    document.getElementById("lvl-arrow").setAttribute("class", rotate);
-  } else if (column == "vlvl") {
-    tinysort(skillElements, { data: 'vlvl' }, { data: 'xp' });
-    document.getElementById("vlvl-arrow").setAttribute("src", "assets/images/arrowactive.svg");
-    document.getElementById("vlvl-arrow").setAttribute("class", rotate);
-  } else if (column == "xp") {
-    tinysort(skillElements, { data: 'xp' });
-    document.getElementById("xp-arrow").setAttribute("src", "assets/images/arrowactive.svg");
-    document.getElementById("xp-arrow").setAttribute("class", rotate);
-  } else if (column == "tnl") {
-    tinysort(skillElements, { data: 'tnl' });
-    document.getElementById("tnl-arrow").setAttribute("src", "assets/images/arrowactive.svg");
-    document.getElementById("tnl-arrow").setAttribute("class", rotate);
-  } else if (column == "rem") {
-    tinysort(skillElements, { data: 'rem' });
-    document.getElementById("rem-arrow").setAttribute("src", "assets/images/arrowactive.svg");
-    document.getElementById("rem-arrow").setAttribute("class", rotate);
-  } else if (column == "percent") {
-    tinysort(skillElements, { data: 'percent' });
-    document.getElementById("percent-arrow").setAttribute("src", "assets/images/arrowactive.svg");
-    document.getElementById("percent-arrow").setAttribute("class", rotate);
-  }*/
+  }
   // Find the order that the rows now appear in
   skillOrder = [];
   for (let i = 0; i < skillElements.length; i++) {
