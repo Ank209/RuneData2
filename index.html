@@ -2,240 +2,246 @@
 <html>
 
 <head>
-    <title>Ankh's RuneData</title>
-    <style type="text/css">
-        @font-face {
-            font-display: block;
-            font-family: "Tulpen One";
-            src: url(assets/tulpen.ttf) format("truetype");
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="assets/runestyle.css"></link>
-    <script type="text/javascript" src="assets/js/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="assets/js/tinysort.js"></script>
+  <title>Ankh's RuneData</title>
+  <style type="text/css">
+    @font-face {
+      font-display: block;
+      font-family: "Tulpen One";
+      src: url(assets/tulpen.ttf) format("truetype");
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="assets/runestyle.css"></link>
+  <script type="text/javascript" src="assets/js/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="assets/js/tinysort.js"></script>
 </head>
 
 <body style="padding-left: calc(100vw - 100%);">
-    <div class="container">
-        <div id="title" style="height:20px;"></div>
-        <form id="header" onsubmit="LoadUserPage()">
-            <input type="text" id="rsn" class="rsnHeader" placeholder="Search"></input>
-        </form>
-        <div id="titleSuffix" style="height:20px; margin-bottom:10px"></div>
-        <div id="searchHelp" style="font-size:20px;">
-            <span id="helpText">Click the word 'Search' above, type a player's name and press 'Enter' to search</span>
-        </div>
-        <script type="text/javascript" src="assets/js/getplayername.js"></script>
-        <div id="loading" class="spinner">
-            <img src="assets/images/spinner.svg"></img>
-            <h2>Loading, please wait</h2>
-        </div>
-        <div id="leftData">
-            <img id="profileImg" src="" class="chatHead"></img>
-            <div style="color:white;">Ranks</div>
-            <div class="darkDropdown">
-                <select class="darkSelect" id="highscore" onchange="updateHighscore()">
-                    <option value="Reg">Regular</option>
-                    <option value="Iron" disabled>Ironman</option>
-                    <option value="HC" selected="selected" disabled>Hardcore Ironman</option>
-                </select>
-            </div>
-            <div id="hcimInfo" style="display: none;">
-                <img src="assets/images/hcim.png" class="infoHCImage" />
-                <div class="infoText" style="color:red">Hardcore Ironman</div>
-            </div>
-            <div id="ironInfo" style="display: none;">
-                <img src="assets/images/iron.png" class="infoIronImage" />
-                <div class="infoText">Ironman</div>
-            </div>
-            <div id="regInfo" style="display: none;">
-                <div class="infoRegText" style="color:white">Regular</div>
-            </div>
-            <div id="private" style="color:red"></div>
-            <div class="playerData">
-                <p>Total Level</p>
-                <h1 id="totalLevel"></h1>
-                <p>Total Xp</p>
-                <h1 id="totalXp"></h1>
-                <p>Combat Level</p>
-                <h1 id="combatLevel"></h1>
-                <p>Milestone Level</p>
-                <h1 id="milestone"></h1>
-                <p>Overall Rank</p>
-                <h1 id="rank"></h1>
-                <p>Ouest Points</p>
-                <h1 id="qp"></h1>
-                <table class="leftTable">
-                    <tr>
-                        <td>99s</td>
-                        <td>120s</td>
-                        <td>200ms</td>
-                    </tr>
-                    <tr>
-                        <td><h1 id="99s"></h1></td>
-                        <td><h1 id="120s"></h1></td>
-                        <td><h1 id="200ms"></h1></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="playerData">
-                <div style="color:white; margin-top:10px;">Goal</div>
-                <div class="darkDropdown">
-                    <select class="darkSelect" id="target" onchange="UpdateGoal()">
-                        <option value="Max">Maxed</option>
-                        <option value="MaxT">Max Total</option>
-                        <option value="120">120 All</option>
-                        <option value="200m">200m All</option>
-                    </select>
-                </div>
-                <p>Progress to Goal</p>
-                <h1 id="percentRem"></h1>
-                <p>Xp Remaining</p>
-                <h1 id="xpRem"></h1>
-                <p>Levels to Max Total</p>
-                <h1 id="levelsToMaxTotal"></h1>
-                <p>Levels to 120 All</p>
-                <h1 id="levelsToTrueMax"></h1>
-            </div>
-            <div class="playerData">
-                <div style="color:white; margin-top:10px;">Clue Scrolls</div>
-                <p>Easy</p>
-                <h1 id="clueEasy"></h1>
-                <p>Medium</p>
-                <h1 id="clueMed"></h1>
-                <p>Hard</p>
-                <h1 id="clueHard"></h1>
-                <p>Elite</p>
-                <h1 id="clueElite"></h1>
-                <p>Master</p>
-                <h1 id="clueMaster"></h1>
-            </div>
-        </div>
-        <div id="mainData">
-            <div id="skill0" class="skill-bar" style="width:0%">
-                <div class="bar-text-icon" onclick="sort('default')">
-                    <img style="transform: translate(5px, 4px);" id="default-cross" src="assets/images/cross.svg" height="20" width="20">
-                </div>
-                <div class="bar-text-skill" onclick="sort('skill')">Skill
-                    <img id="skill-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
-                </div>
-                <div class="bar-text-rank" onclick="sort('rank')">Rank
-                    <img id="rank-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
-                </div>
-                <div class="bar-text-level" onclick="sort('lvl')">Lvl
-                    <img id="lvl-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
-                </div>
-                <div class="bar-text-vlevel" onclick="sort('vlvl')">VLvl
-                    <img id="vlvl-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
-                </div>
-                <div class="bar-text-xp" onclick="sort('xp')">Experience
-                    <img id="xp-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
-                </div>
-                <div class="bar-text-tnl" onclick="sort('tnl')">Next Level
-                    <img id="tnl-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
-                </div>
-                <div class="bar-text-remaining" onclick="sort('rem')">To Go
-                    <img id="rem-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
-                </div>
-                <div class="bar-text-percentage" onclick="sort('percent')">%
-                    <img id="percent-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
-                </div>
-            </div>
-        </div>
-        <div id="highscoreArrowContainer">
-            <div class="highscoreArrow" onclick="OpenHighscores(1)" id="arrow1">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(2)" id="arrow2">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(3)" id="arrow3">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(4)" id="arrow4">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(5)" id="arrow5">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(6)" id="arrow6">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(7)" id="arrow7">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(8)" id="arrow8">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(9)" id="arrow9">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(10)" id="arrow10">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(11)" id="arrow11">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(12)" id="arrow12">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(13)" id="arrow13">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(14)" id="arrow14">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(15)" id="arrow15">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(16)" id="arrow16">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(17)" id="arrow17">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(18)" id="arrow18">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(19)" id="arrow19">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(20)" id="arrow20">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(21)" id="arrow21">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(22)" id="arrow22">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(23)" id="arrow23">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(24)" id="arrow24">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(25)" id="arrow25">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(26)" id="arrow26">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-            <div class="highscoreArrow" onclick="OpenHighscores(27)" id="arrow27">
-                <img src="assets/images/goarrow.svg" height="20">
-            </div>
-        </div>
+  <div class="container">
+    <div id="title" style="height:20px;"></div>
+    <form id="header" onsubmit="LoadUserPage()">
+      <input type="text" id="rsn" class="rsnHeader" placeholder="Search"></input>
+    </form>
+    <div id="titleSuffix" style="height:20px; margin-bottom:10px"></div>
+    <div id="searchHelp" style="font-size:20px;">
+      <span id="helpText">Click the word 'Search' above, type a player's name and press 'Enter' to search</span>
     </div>
+    <script type="text/javascript" src="assets/js/getplayername.js"></script>
+    <div id="loading" class="spinner">
+      <img src="assets/images/spinner.svg"></img>
+      <h2>Loading, please wait</h2>
+    </div>
+    <div id="leftData">
+      <img id="profileImg" src="" class="chatHead"></img>
+      <div style="color:white;">Ranks</div>
+      <div class="darkDropdown">
+        <select class="darkSelect" id="highscore" onchange="updateHighscore()">
+          <option value="Reg">Regular</option>
+          <option value="Iron" disabled>Ironman</option>
+          <option value="HC" selected="selected" disabled>Hardcore Ironman</option>
+        </select>
+      </div>
+      <div id="hcimInfo" style="display: none;">
+        <img src="assets/images/hcim.png" class="infoHCImage" />
+        <div class="infoText" style="color:red">Hardcore Ironman</div>
+      </div>
+      <div id="ironInfo" style="display: none;">
+        <img src="assets/images/iron.png" class="infoIronImage" />
+        <div class="infoText">Ironman</div>
+      </div>
+      <div id="regInfo" style="display: none;">
+        <div class="infoRegText" style="color:white">Regular</div>
+      </div>
+      <div id="private" style="color:red"></div>
+      <div class="playerData">
+        <p>Total Level</p>
+        <h1 id="totalLevel"></h1>
+        <p>Total Xp</p>
+        <h1 id="totalXp"></h1>
+        <p>Combat Level</p>
+        <h1 id="combatLevel"></h1>
+        <p>Milestone Level</p>
+        <h1 id="milestone"></h1>
+        <p>Overall Rank</p>
+        <h1 id="rank"></h1>
+        <p>Ouest Points</p>
+        <h1 id="qp"></h1>
+        <table class="leftTable">
+          <tr>
+            <td>99s</td>
+            <td>120s</td>
+            <td>200ms</td>
+          </tr>
+          <tr>
+            <td>
+              <h1 id="99s"></h1>
+            </td>
+            <td>
+              <h1 id="120s"></h1>
+            </td>
+            <td>
+              <h1 id="200ms"></h1>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="playerData">
+        <div style="color:white; margin-top:10px;">Goal</div>
+        <div class="darkDropdown">
+          <select class="darkSelect" id="target" onchange="UpdateGoal()">
+            <option value="Max">Maxed</option>
+            <option value="MaxT">Max Total</option>
+            <option value="120">120 All</option>
+            <option value="200m">200m All</option>
+          </select>
+        </div>
+        <p>Progress to Goal</p>
+        <h1 id="percentRem"></h1>
+        <p>Xp Remaining</p>
+        <h1 id="xpRem"></h1>
+        <p>Levels to Max Total</p>
+        <h1 id="levelsToMaxTotal"></h1>
+        <p>Levels to 120 All</p>
+        <h1 id="levelsToTrueMax"></h1>
+      </div>
+      <div class="playerData">
+        <div style="color:white; margin-top:10px;">Clue Scrolls</div>
+        <p>Easy</p>
+        <h1 id="clueEasy"></h1>
+        <p>Medium</p>
+        <h1 id="clueMed"></h1>
+        <p>Hard</p>
+        <h1 id="clueHard"></h1>
+        <p>Elite</p>
+        <h1 id="clueElite"></h1>
+        <p>Master</p>
+        <h1 id="clueMaster"></h1>
+      </div>
+    </div>
+    <div id="mainData">
+      <div id="skill0" class="skill-bar" style="width:0%">
+        <div class="bar-text-icon" onclick="sort('default')">
+          <img style="transform: translate(5px, 4px);" id="default-cross" src="assets/images/cross.svg" height="20" width="20">
+        </div>
+        <div class="bar-text-skill" onclick="sort('skill')">Skill
+          <img id="skill-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+        </div>
+        <div class="bar-text-rank" onclick="sort('rank')">Rank
+          <img id="rank-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+        </div>
+        <div class="bar-text-level" onclick="sort('lvl')">Lvl
+          <img id="lvl-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+        </div>
+        <div class="bar-text-vlevel" onclick="sort('vlvl')">VLvl
+          <img id="vlvl-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+        </div>
+        <div class="bar-text-xp" onclick="sort('xp')">Experience
+          <img id="xp-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+        </div>
+        <div class="bar-text-tnl" onclick="sort('tnl')">Next Level
+          <img id="tnl-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+        </div>
+        <div class="bar-text-remaining" onclick="sort('rem')">To Go
+          <img id="rem-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+        </div>
+        <div class="bar-text-percentage" onclick="sort('percent')">%
+          <img id="percent-arrow" src="assets/images/arrowinactive.svg" height="13" width="13" rotate="0">
+        </div>
+      </div>
+    </div>
+    <div id="highscoreArrowContainer">
+      <div class="highscoreArrow" onclick="OpenHighscores(1)" id="arrow1">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(2)" id="arrow2">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(3)" id="arrow3">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(4)" id="arrow4">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(5)" id="arrow5">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(6)" id="arrow6">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(7)" id="arrow7">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(8)" id="arrow8">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(9)" id="arrow9">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(10)" id="arrow10">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(11)" id="arrow11">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(12)" id="arrow12">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(13)" id="arrow13">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(14)" id="arrow14">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(15)" id="arrow15">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(16)" id="arrow16">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(17)" id="arrow17">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(18)" id="arrow18">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(19)" id="arrow19">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(20)" id="arrow20">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(21)" id="arrow21">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(22)" id="arrow22">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(23)" id="arrow23">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(24)" id="arrow24">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(25)" id="arrow25">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(26)" id="arrow26">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+      <div class="highscoreArrow" onclick="OpenHighscores(27)" id="arrow27">
+        <img src="assets/images/goarrow.svg" height="20">
+      </div>
+    </div>
+  </div>
 </body>
 <footer>
-    <!--Spinner by
+  <!--Spinner by
     <a href="https://loading.io/spinner/double-ring">loading.io</a>
     Block Arrow icon by
     <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
     Cross Icon by
     <a href="http://www.freepik.com" title="Freepik">Freepik</a>
     Line Arrow by <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a>-->
-    <script type="text/javascript" src="assets/js/runedata.js"></script>
+  <script type="text/javascript" src="assets/js/runedata.js"></script>
 </footer>
 
 </html>
