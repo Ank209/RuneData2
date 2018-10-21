@@ -84,14 +84,7 @@ function GetUserData(searchTerm) {
         url: "assets/trainingmethods.json", dataType: "json", success: function (data) { trainingMethods = data; }
     });
     // Player Info via allorigins.me, Reload the page if important data cannot be found
-    $.ajax({
-        url: "http://allorigins.me/get?url=https://apps.runescape.com/runemetrics/profile/profile?user=" + searchTerm + "&activities=0",
-        dataType: "json", success: function (data) { AllOrigins([data], 'json', returnCall.PlayerData) }, error: function (data) { location.reload(); }
-    });
-    $.ajax({
-        url: "http://allorigins.me/get?url=https://apps.runescape.com/runemetrics/quests?user=" + searchTerm,
-        dataType: "json", success: function (data) { AllOrigins([data], 'json', returnCall.QuestData) }, error: function (data) { location.reload(); }
-    });
+    GetPlayerData(searchTerm);
     $.ajax({
         type: 'GET',
         url: "http://allorigins.me/get?url=http://services.runescape.com/m=hiscore_hardcore_ironman/index_lite.ws?player=" + searchTerm,
@@ -108,6 +101,17 @@ function GetUserData(searchTerm) {
     $.ajax({
         url: 'http://services.runescape.com/m=website-data/playerDetails.ws?names=["' + searchTerm + '"]',
         dataType: "jsonp", success: HandlePlayerInfo, error: function (data) { location.reload(); }
+    });
+}
+
+function GetPlayerData(searchTerm) {
+    $.ajax({
+        url: "http://allorigins.me/get?url=https://apps.runescape.com/runemetrics/profile/profile?user=" + searchTerm + "&activities=0",
+        dataType: "json", success: function (data) { AllOrigins([data], 'json', returnCall.PlayerData) }, error: function (data) { GetPlayerData(searchTerm); }
+    });
+    $.ajax({
+        url: "http://allorigins.me/get?url=https://apps.runescape.com/runemetrics/quests?user=" + searchTerm,
+        dataType: "json", success: function (data) { AllOrigins([data], 'json', returnCall.QuestData) }, error: function (data) { GetPlayerData(searchTerm); }
     });
 }
 
